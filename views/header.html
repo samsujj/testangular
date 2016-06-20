@@ -1,0 +1,387 @@
+<div ng-show="!getLayoutOption('fullscreen')" ng-class="{headerbarHide: getLayoutOption('headerBarHidden'), headerbarShow: !getLayoutOption('headerBarHidden')}" id="headerbar" class="ng-scope headerbarHide">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 col-sm-2">
+                <a class="shortcut-tiles tiles-brown" href="#">
+                    <div class="tiles-body">
+                        <div class="pull-left"><i class="glyphicon glyphicon-star"></i></div>
+                    </div>
+                    <div class="tiles-footer">
+                        Create Post
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-2">
+                <a class="shortcut-tiles tiles-grape" href="#">
+                    <div class="tiles-body">
+                        <div class="pull-left"><i class="glyphicon glyphicon-user"></i></div>
+                        <div class="pull-right"><span class="badge">2</span></div>
+                    </div>
+                    <div class="tiles-footer">
+                        Contacts
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-2">
+                <a class="shortcut-tiles tiles-primary" href="#">
+                    <div class="tiles-body">
+                        <div class="pull-left"><i class="glyphicon glyphicon-envelope"></i></div>
+                        <div class="pull-right"><span class="badge">10</span></div>
+                    </div>
+                    <div class="tiles-footer">
+                        Messages
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-2">
+                <a class="shortcut-tiles tiles-inverse" href="#">
+                    <div class="tiles-body">
+                        <div class="pull-left"><i class="glyphicon glyphicon-camera"></i></div>
+                        <div class="pull-right"><span class="badge">3</span></div>
+                    </div>
+                    <div class="tiles-footer">
+                        Gallery
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-6 col-sm-2">
+                <a class="shortcut-tiles tiles-midnightblue" href="#">
+                    <div class="tiles-body">
+                        <div class="pull-left"><i class="glyphicon glyphicon-cog"></i></div>
+                    </div>
+                    <div class="tiles-footer">
+                        Settings
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-2">
+                <a class="shortcut-tiles tiles-orange" href="#">
+                    <div class="tiles-body">
+                        <div class="pull-left"><i class="glyphicon glyphicon-wrench"></i></div>
+                    </div>
+                    <div class="tiles-footer">
+                        Plugins
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<header role="banner"  ng-class="{'navbar-fixed-top': getLayoutOption('fixedHeader'), 'navbar-static-top': !getLayoutOption('fixedHeader')}" class="navbar ng-scope navbar-fixed-top" id="topnav" style="background: #37444e none repeat scroll 0 0">
+    <a ng-click="toggleLeftBar2()" id="leftmenu-trigger"></a>
+    <a ng-click="toggleRightBar()" id="rightmenu-trigger"></a>
+
+
+    <div class="navbar-header pull-left">
+        <a href="#/" class="navbar-brand">Maverick</a>
+    </div>
+
+    <div ng-class="{
+		  active: getLayoutOption('showSmallSearchBar')
+		}" class="nav navbar-nav navbar-form hidden-xs" id="search-inline">
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-search search"></i>
+            <input type="text" tabindex="1" class="form-control" placeholder="Type to search...">
+            <i ng-click="toggleSearchBar($event)" class="glyphicon glyphicon-remove remove visible-xs-inline-block"></i>
+        </div>
+    </div>
+
+    <ul class="nav navbar-nav pull-right toolbar">
+        <li ng-show="!isLoggedIn" class="dropdown ng-hide">
+            <a style="font-size: 14px" href="#/extras-login2"><i class="fa fa-sign-in"></i> Log in</a>
+        </li>
+        <li dropdown="" ng-show="isLoggedIn" class="dropdown">
+            <a dropdown-toggle="" class="dropdown-toggle username" href="" aria-haspopup="true" aria-expanded="false"><img alt="Dangerfield" src="assets/demo/avatar/dangerfield.png"></a>
+            <ul class="dropdown-menu animated userinfo arrow">
+                <li class="userlinks">
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Edit Profile <i class="pull-right glyphicon glyphicon-pencil"></i></a></li>
+                        <li><a href="#">Account <i class="pull-right glyphicon glyphicon-user"></i></a></li>
+                        <li><a href="#">Settings <i class="pull-right glyphicon glyphicon-cog"></i></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Earnings <i class="pull-right glyphicon glyphicon-stats"></i></a></li>
+                        <li><a href="#">Statement <i class="pull-right glyphicon glyphicon-list-alt"></i></a></li>
+                        <li><a href="#">Withdrawals <i class="pull-right glyphicon glyphicon-credit-card"></i></a></li>
+                        <li class="divider"></li>
+                        <li><a ng-click="logOut()" class="text-right" href="">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li ng-show="isLoggedIn" dropdown="" class="dropdown hidden-xs ng-scope">
+            <a dropdown-toggle="" class="dropdown-toggle" href="" aria-haspopup="true" aria-expanded="false">
+                <i class="glyphicon glyphicon-envelope"></i><!-- ngIf: unseenCount>0 --><span ng-bind="unseenCount" ng-if="unseenCount&gt;0" class="badge badge-danger ng-binding ng-scope">6</span><!-- end ngIf: unseenCount>0 -->
+            </a>
+            <ul class="dropdown-menu animated messages arrow">
+                <li class="dd-header">
+                    <span class="ng-binding">Messages (6)</span>
+                    <span><a href="#"><i class="glyphicon glyphicon-cog"></i></a></span>
+                </li>
+                <div scrollable="" class="scrollthis"><div class="nano has-scrollbar"><div class="nano-content" tabindex="0" style="right: -17px;">
+                    <!-- ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/" class="active">
+                        <!-- ngIf: !item.read --><button ng-click="setRead(item, $event)" ng-if="!item.read" class="btn-mark-read ng-scope" tooltip="Mark read" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.read -->
+                        <!-- ngIf: item.read -->
+                        <span class="time ng-binding">3m</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/paton.png" src="assets/demo/avatar/paton.png">
+                        <div>
+                            <span class="name ng-binding">Polly Paton</span>
+                            <span class="msg ng-binding">Uploaded all the files to server</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/" class="active">
+                        <!-- ngIf: !item.read --><button ng-click="setRead(item, $event)" ng-if="!item.read" class="btn-mark-read ng-scope" tooltip="Mark read" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.read -->
+                        <!-- ngIf: item.read -->
+                        <span class="time ng-binding">17m</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/corbett.png" src="assets/demo/avatar/corbett.png">
+                        <div>
+                            <span class="name ng-binding">Simon Corbett</span>
+                            <span class="msg ng-binding">I am signing off for today</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/">
+                        <!-- ngIf: !item.read -->
+                        <!-- ngIf: item.read --><button ng-click="setUnread(item, $event)" ng-if="item.read" class="btn-mark-unread ng-scope" tooltip="Mark unread" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-check"></i></button><!-- end ngIf: item.read -->
+                        <span class="time ng-binding">2h</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/tennant.png" src="assets/demo/avatar/tennant.png">
+                        <div>
+                            <span class="name ng-binding">Matt Tennant</span>
+                            <span class="msg ng-binding">Everything is working just fine here</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/" class="active">
+                        <!-- ngIf: !item.read --><button ng-click="setRead(item, $event)" ng-if="!item.read" class="btn-mark-read ng-scope" tooltip="Mark read" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.read -->
+                        <!-- ngIf: item.read -->
+                        <span class="time ng-binding">5d</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/doyle.png" src="assets/demo/avatar/doyle.png">
+                        <div>
+                            <span class="name ng-binding">Alan Doyle</span>
+                            <span class="msg ng-binding">Please mail me the files by tonight</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/" class="active">
+                        <!-- ngIf: !item.read --><button ng-click="setRead(item, $event)" ng-if="!item.read" class="btn-mark-read ng-scope" tooltip="Mark read" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.read -->
+                        <!-- ngIf: item.read -->
+                        <span class="time ng-binding">3m</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/paton.png" src="assets/demo/avatar/paton.png">
+                        <div>
+                            <span class="name ng-binding">Polly Paton</span>
+                            <span class="msg ng-binding">Uploaded all the files to server</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/" class="active">
+                        <!-- ngIf: !item.read --><button ng-click="setRead(item, $event)" ng-if="!item.read" class="btn-mark-read ng-scope" tooltip="Mark read" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.read -->
+                        <!-- ngIf: item.read -->
+                        <span class="time ng-binding">17m</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/corbett.png" src="assets/demo/avatar/corbett.png">
+                        <div>
+                            <span class="name ng-binding">Simon Corbett</span>
+                            <span class="msg ng-binding">I am signing off for today</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/">
+                        <!-- ngIf: !item.read -->
+                        <!-- ngIf: item.read --><button ng-click="setUnread(item, $event)" ng-if="item.read" class="btn-mark-unread ng-scope" tooltip="Mark unread" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-check"></i></button><!-- end ngIf: item.read -->
+                        <span class="time ng-binding">2h</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/tennant.png" src="assets/demo/avatar/tennant.png">
+                        <div>
+                            <span class="name ng-binding">Matt Tennant</span>
+                            <span class="msg ng-binding">Everything is working just fine here</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages --><li ng-repeat="item in messages" class="ng-scope">
+                    <a ng-class="{active: !item.read}" href="#/" class="active">
+                        <!-- ngIf: !item.read --><button ng-click="setRead(item, $event)" ng-if="!item.read" class="btn-mark-read ng-scope" tooltip="Mark read" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.read -->
+                        <!-- ngIf: item.read -->
+                        <span class="time ng-binding">5d</span>
+                        <img alt="avatar" ng-src="assets/demo/avatar/doyle.png" src="assets/demo/avatar/doyle.png">
+                        <div>
+                            <span class="name ng-binding">Alan Doyle</span>
+                            <span class="msg ng-binding">Please mail me the files by tonight</span>
+                        </div>
+                    </a>
+                </li><!-- end ngRepeat: item in messages -->
+                </div><div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div></div>
+                <li class="dd-footer"><a ng-click="setReadAll($event)" href="#">Mark all read</a></li>
+            </ul>
+        </li>
+        <li ng-show="isLoggedIn"  dropdown="" class="dropdown ng-scope">
+            <a class="dropdown-toggle" dropdown-toggle="" href="" aria-haspopup="true" aria-expanded="false">
+                <i class="glyphicon glyphicon-globe"></i><!-- ngIf: unseenCount>0 --><span ng-bind="unseenCount" ng-if="unseenCount&gt;0" class="badge badge-indigo ng-binding ng-scope">5</span><!-- end ngIf: unseenCount>0 -->
+            </a>
+            <ul class="dropdown-menu animated notifications arrow">
+                <li class="dd-header">
+                    <span class="ng-binding">Notifications (5)</span>
+                    <span><a href="#"><i class="glyphicon glyphicon-cog"></i></a></span>
+                </li>
+                <div scrollable="" class="scrollthis"><div class="nano has-scrollbar"><div class="nano-content" tabindex="0" style="right: -17px;">
+                    <!-- ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-success" href="#">
+                        <!-- ngIf: !item.seen -->
+                        <!-- ngIf: item.seen --><button ng-click="setUnseen(item, $event)" ng-if="item.seen" class="btn-mark-unread ng-scope" tooltip="Mark unseen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-check"></i></button><!-- end ngIf: item.seen -->
+                        <span class="time ng-binding">4m</span>
+                        <i class="glyphicon glyphicon-ok"></i>
+                        <span class="msg ng-binding">Server #1 is live</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-user active" href="#">
+                        <!-- ngIf: !item.seen --><button ng-click="setSeen(item, $event)" ng-if="!item.seen" class="btn-mark-read ng-scope" tooltip="Mark seen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.seen -->
+                        <!-- ngIf: item.seen -->
+                        <span class="time ng-binding">10m</span>
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span class="msg ng-binding">New user Registered</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-danger active" href="#">
+                        <!-- ngIf: !item.seen --><button ng-click="setSeen(item, $event)" ng-if="!item.seen" class="btn-mark-read ng-scope" tooltip="Mark seen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.seen -->
+                        <!-- ngIf: item.seen -->
+                        <span class="time ng-binding">22m</span>
+                        <i class="glyphicon glyphicon-exclamation-sign"></i>
+                        <span class="msg ng-binding">CPU at 92% on server#3!</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-warning active" href="#">
+                        <!-- ngIf: !item.seen --><button ng-click="setSeen(item, $event)" ng-if="!item.seen" class="btn-mark-read ng-scope" tooltip="Mark seen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.seen -->
+                        <!-- ngIf: item.seen -->
+                        <span class="time ng-binding">30m</span>
+                        <i class="glyphicon glyphicon-warning-sign"></i>
+                        <span class="msg ng-binding">Database overloaded</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-order" href="#">
+                        <!-- ngIf: !item.seen -->
+                        <!-- ngIf: item.seen --><button ng-click="setUnseen(item, $event)" ng-if="item.seen" class="btn-mark-unread ng-scope" tooltip="Mark unseen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-check"></i></button><!-- end ngIf: item.seen -->
+                        <span class="time ng-binding">1h</span>
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        <span class="msg ng-binding">New order received</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-danger" href="#">
+                        <!-- ngIf: !item.seen -->
+                        <!-- ngIf: item.seen --><button ng-click="setUnseen(item, $event)" ng-if="item.seen" class="btn-mark-unread ng-scope" tooltip="Mark unseen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-check"></i></button><!-- end ngIf: item.seen -->
+                        <span class="time ng-binding">9d</span>
+                        <i class="glyphicon glyphicon-remove"></i>
+                        <span class="msg ng-binding">Application error!</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-success active" href="#">
+                        <!-- ngIf: !item.seen --><button ng-click="setSeen(item, $event)" ng-if="!item.seen" class="btn-mark-read ng-scope" tooltip="Mark seen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.seen -->
+                        <!-- ngIf: item.seen -->
+                        <span class="time ng-binding">1d</span>
+                        <i class="glyphicon glyphicon-ok"></i>
+                        <span class="msg ng-binding">Installation Succeeded</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications --><li ng-repeat="item in notifications" class="ng-scope">
+                    <a ng-class="{active: !item.seen}" class="notification-success active" href="#">
+                        <!-- ngIf: !item.seen --><button ng-click="setSeen(item, $event)" ng-if="!item.seen" class="btn-mark-read ng-scope" tooltip="Mark seen" tooltip-append-to-body="true" tooltip-placement="top"><i class="glyphicon glyphicon-unchecked"></i></button><!-- end ngIf: !item.seen -->
+                        <!-- ngIf: item.seen -->
+                        <span class="time ng-binding">2d</span>
+                        <i class="glyphicon glyphicon-ok"></i>
+                        <span class="msg ng-binding">Account Created</span>
+                    </a>
+                </li><!-- end ngRepeat: item in notifications -->
+                </div><div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div></div>
+                <li class="dd-footer"><a ng-click="setSeenAll($event)" href="javascript:;">Mark all seen</a></li>
+            </ul>
+        </li>
+        <li class="visible-xs-block">
+            <a ng-click="toggleSearchBar($event)" href="#"><i class="glyphicon glyphicon-search"></i></a>
+        </li>
+        <li class="hidden-xs" ng-click="showHeaderBar($event)">
+            <a id="headerbardropdown" href=""><i class="glyphicon glyphicon-th"></i></a>
+        </li>
+        <li dropdown="" class="dropdown demodrop">
+            <a class="dropdown-toggle tooltips" dropdown-toggle="" href="" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i></a>
+            <ul id="demo-dropdown" class="dropdown-menu animated arrow dropdown-menu-form">
+
+                <div class="tabular">
+                    <div class="tabular-row">
+                        <div class="tabular-cell pt0">
+                            <label class="control-label" for="demo-header-variations">Header Colors</label>
+
+                            <ul id="demo-header-variations" class="list-inline demo-color-variation">
+                                <li><a ng-click="setNavbarClass('navbar-default', $event)" href="javascript:;" class="color-default"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-inverse', $event)" href="javascript:;" class="color-inverse"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-midnightblue', $event)" href="javascript:;" class="color-midnightblue"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-primary', $event)" href="javascript:;" class="color-primary"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-indigo', $event)" href="javascript:;" class="color-indigo"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-success', $event)" href="javascript:;" class="color-success"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-green', $event)" href="javascript:;" class="color-green"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-grape', $event)" href="javascript:;" class="color-grape"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-orange', $event)" href="javascript:;" class="color-orange"></a></li>
+                                <li><a ng-click="setNavbarClass('navbar-danger', $event)" href="javascript:;" class="color-danger"></a></li>
+                            </ul>
+                        </div>
+                        <div class="tabular-cell pt0">
+                            <label class="control-label" for="demo-color-variations">Sidebar Colors</label>
+                            <ul class="list-inline demo-color-variation">
+                                <li><a ng-click="setSidebarClass('sidebar-default', $event)" href="javascript:;" class="color-default"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-inverse', $event)" href="javascript:;" class="color-inverse"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-midnightblue', $event)" href="javascript:;" class="color-midnightblue"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-primary', $event)" href="javascript:;" class="color-primary"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-indigo', $event)" href="javascript:;" class="color-indigo"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-success', $event)" href="javascript:;" class="color-success"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-green', $event)" href="javascript:;" class="color-green"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-grape', $event)" href="javascript:;" class="color-grape"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-orange', $event)" href="javascript:;" class="color-orange"></a></li>
+                                <li><a ng-click="setSidebarClass('sidebar-danger', $event)" href="javascript:;" class="color-danger"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tabular-row">
+                        <div class="tabular-cell">
+                            <label for="layoutFixedHeader">Fixed Header</label>
+                            <div ng-click="$event.stopPropagation()">
+                                <input type="checkbox" ui-switch="{color: '#E43B11', secondaryColor: '#F89279'}" class="js-switch ng-pristine ng-untouched ng-valid ng-isolate-scope" ng-model="layoutFixedHeader" style="display: none;" data-switchery="true"><span class="switchery" style="background-color: rgb(228, 59, 17); border-color: rgb(228, 59, 17); box-shadow: 0px 0px 0px 16px rgb(228, 59, 17) inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;"><small style="left: 20px; background-color: rgb(255, 255, 255); transition: left 0.2s ease 0s;"></small></span>
+                            </div>
+                        </div>
+                        <div class="tabular-cell">
+                            <label for="layoutLayoutBoxed"><a href="#/layout-fixed">Boxed Layout</a></label>
+                            <div ng-click="$event.stopPropagation()">
+                                <input type="checkbox" ui-switch="{color: '#E43B11', secondaryColor: '#F89279'}" class="js-switch ng-pristine ng-untouched ng-valid ng-isolate-scope" ng-model="layoutLayoutBoxed" style="display: none;" data-switchery="true"><span class="switchery" style="box-shadow: 0px 0px 0px 0px rgb(248, 146, 121) inset; border-color: rgb(248, 146, 121); background-color: rgb(248, 146, 121); transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s ease 0s;"></small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabular-row">
+                        <div class="tabular-cell">
+                            <label for="layoutLayoutHorizontal">Horizontal Nav</label>
+                            <div ng-click="$event.stopPropagation()">
+                                <input type="checkbox" ui-switch="{color: '#E43B11', secondaryColor: '#F89279'}" class="js-switch ng-pristine ng-untouched ng-valid ng-isolate-scope" ng-model="layoutLayoutHorizontal" style="display: none;" data-switchery="true"><span class="switchery" style="box-shadow: 0px 0px 0px 0px rgb(248, 146, 121) inset; border-color: rgb(248, 146, 121); background-color: rgb(248, 146, 121); transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s ease 0s;"></small></span>
+                            </div>
+                        </div>
+                        <div class="tabular-cell">
+                        </div>
+                    </div>
+                    <div class="tabular-row">
+                        <div class="tabular-cell pb0 pr10">
+                            <label for="layoutDropdownTransitionStyle">Dropdown Animation</label>
+                            <div ng-click="$event.stopPropagation()">
+                                <select class="form-control ng-pristine ng-untouched ng-valid" ng-model="layoutDropdownTransitionStyle">
+                                    <!-- ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="bounce" class="ng-binding ng-scope">bounce</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="flash" class="ng-binding ng-scope">flash</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="pulse" class="ng-binding ng-scope">pulse</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="bounceIn" class="ng-binding ng-scope">bounceIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="bounceInDown" class="ng-binding ng-scope">bounceInDown</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="bounceInLeft" class="ng-binding ng-scope">bounceInLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="bounceInRight" class="ng-binding ng-scope">bounceInRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="bounceInUp" class="ng-binding ng-scope">bounceInUp</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeIn" class="ng-binding ng-scope">fadeIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInDown" class="ng-binding ng-scope">fadeInDown</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInDownBig" class="ng-binding ng-scope">fadeInDownBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInLeft" class="ng-binding ng-scope">fadeInLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInLeftBig" class="ng-binding ng-scope">fadeInLeftBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInRight" class="ng-binding ng-scope">fadeInRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInRightBig" class="ng-binding ng-scope">fadeInRightBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInUp" class="ng-binding ng-scope">fadeInUp</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="fadeInUpBig" class="ng-binding ng-scope">fadeInUpBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="flipInX" class="ng-binding ng-scope" selected="selected">flipInX</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="flipInY" class="ng-binding ng-scope">flipInY</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="lightSpeedIn" class="ng-binding ng-scope">lightSpeedIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="rotateIn" class="ng-binding ng-scope">rotateIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="rotateInDownLeft" class="ng-binding ng-scope">rotateInDownLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="rotateInDownRight" class="ng-binding ng-scope">rotateInDownRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="rotateInUpLeft" class="ng-binding ng-scope">rotateInUpLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="rotateInUpRight" class="ng-binding ng-scope">rotateInUpRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="rollIn" class="ng-binding ng-scope">rollIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="zoomIn" class="ng-binding ng-scope">zoomIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="zoomInDown" class="ng-binding ng-scope">zoomInDown</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="zoomInLeft" class="ng-binding ng-scope">zoomInLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="zoomInRight" class="ng-binding ng-scope">zoomInRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutDropdownTransitionStyle" value="zoomInUp" class="ng-binding ng-scope">zoomInUp</option><!-- end ngRepeat: item in layoutPageTransitionStyleList -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tabular-cell pb0 pl10">
+                            <label for="layoutPageTransitionStyle">Transition Animation</label>
+                            <div ng-click="$event.stopPropagation()">
+                                <select class="form-control ng-pristine ng-untouched ng-valid" ng-model="layoutPageTransitionStyle">
+                                    <!-- ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="bounce" class="ng-binding ng-scope">bounce</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="flash" class="ng-binding ng-scope">flash</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="pulse" class="ng-binding ng-scope">pulse</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="bounceIn" class="ng-binding ng-scope">bounceIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="bounceInDown" class="ng-binding ng-scope">bounceInDown</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="bounceInLeft" class="ng-binding ng-scope">bounceInLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="bounceInRight" class="ng-binding ng-scope">bounceInRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="bounceInUp" class="ng-binding ng-scope">bounceInUp</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeIn" class="ng-binding ng-scope" selected="selected">fadeIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInDown" class="ng-binding ng-scope">fadeInDown</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInDownBig" class="ng-binding ng-scope">fadeInDownBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInLeft" class="ng-binding ng-scope">fadeInLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInLeftBig" class="ng-binding ng-scope">fadeInLeftBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInRight" class="ng-binding ng-scope">fadeInRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInRightBig" class="ng-binding ng-scope">fadeInRightBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInUp" class="ng-binding ng-scope">fadeInUp</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="fadeInUpBig" class="ng-binding ng-scope">fadeInUpBig</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="flipInX" class="ng-binding ng-scope">flipInX</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="flipInY" class="ng-binding ng-scope">flipInY</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="lightSpeedIn" class="ng-binding ng-scope">lightSpeedIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="rotateIn" class="ng-binding ng-scope">rotateIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="rotateInDownLeft" class="ng-binding ng-scope">rotateInDownLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="rotateInDownRight" class="ng-binding ng-scope">rotateInDownRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="rotateInUpLeft" class="ng-binding ng-scope">rotateInUpLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="rotateInUpRight" class="ng-binding ng-scope">rotateInUpRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="rollIn" class="ng-binding ng-scope">rollIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="zoomIn" class="ng-binding ng-scope">zoomIn</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="zoomInDown" class="ng-binding ng-scope">zoomInDown</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="zoomInLeft" class="ng-binding ng-scope">zoomInLeft</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="zoomInRight" class="ng-binding ng-scope">zoomInRight</option><!-- end ngRepeat: item in layoutPageTransitionStyleList --><option ng-repeat="item in layoutPageTransitionStyleList" ng-selected="item == layoutPageTransitionStyle" value="zoomInUp" class="ng-binding ng-scope">zoomInUp</option><!-- end ngRepeat: item in layoutPageTransitionStyleList -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </li>
+    </ul>
+</header>

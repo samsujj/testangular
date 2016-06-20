@@ -1,0 +1,124 @@
+<div class="verticalcenter">
+    <a href="#/"><img src="assets/img/logo-big-black.png" alt="Logo" class="brand" /></a>
+    <div class="panel panel-primary">
+        <form angular-validator-submit="submitsignUpForm()" name="signUpForm" id="signUpForm" class="form-horizontal" novalidate angular-validator>
+
+        <div class="panel-body">
+            <h2 class="text-center" style="margin-bottom: 25px;">Sign Up</h2>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input  type="text" class="form-control"   id="UserManager_fname" name="fname" placeholder="FIRST NAME"
+                                ng-model = "form.fname"
+                                required-message="'First Name cannot be blank.'"
+                                required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input  type="text" class="form-control" id="UserManager_lname" name="lname" placeholder="LAST NAME"
+                                ng-model = "form.lname"
+                                required-message="'Last Name cannot be blank.'"
+                                required>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email" class="form-control" id="UserManager_email" name="email" placeholder="EMAIL"
+                                   ng-model = "form.email"
+                                   required-message="'Email cannot be blank.'"
+                                   invalid-message="'Enter valid email address.'"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password"  class="form-control"   id="UserManager_password" name="password" placeholder="PASSWORD"
+                                   ng-model = "form.password"
+                                   required-message="'Password cannot be blank.'"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password"  class="form-control"  id="UserManager_password2" name="password2" placeholder="CONFIRM PASSWORD" ng-model = "form.password2" validator = "form.password === form.password2" invalid-message = "'Passwords do not match!'">
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                        <input  type="text" class="form-control" id="UserManager_state" name="state" placeholder="STATE"
+                                ng-model = "form.state"
+                                required-message="'State cannot be blank.'"
+                                required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                        <select id="UserManager_country"   class="form-control"  name="country" ng-model = "form.country" required-message="'Country cannot be blank.'" required ng-options="item.name for item in countrylist  track by item.id">
+                            <option value="" style="padding-left:5px; ">SELECT YOUR COUNTRY</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                        <input  type="text" class="form-control" id="UserManager_phone" name="phone" placeholder="PHONE NO"
+                                ng-model = "form.phone"
+                                required-message="'Phone cannot be blank.'"
+                                required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox block" style="text-align:center">
+                    <input type="checkbox">
+					<span>
+						I accept the <a href="#">User Agreement</a>
+					</span>
+                </div>
+
+        </div>
+        <div class="panel-footer">
+            <div class="pull-left">
+                <a href="#/index" class="btn btn-default">Cancel</a>
+            </div>
+            <div class="pull-right">
+                <input class="btn btn-success" type="submit" value="Sign Up">
+            </div>
+        </div>
+
+            </form>
+
+    </div>
+</div>

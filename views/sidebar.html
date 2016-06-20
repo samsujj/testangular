@@ -1,0 +1,25 @@
+
+    <nav class="static-sidebar" role="navigation">
+        <ul id="sidebar" sticky-scroll="50">
+            <li id="search" ng-cloak>
+                <a href="">
+                    <i class="fa fa-binoculars opacity-control"></i>
+                </a>
+                <form
+                        ng-click="$event.stopPropagation()"
+                        ng-submit="goToSearch()">
+                    <input type="text" ng-model="searchQuery" class="search-query" placeholder="Type to filter..." />
+                    <button type="submit" ng-click="goToSearch()"><i class="fa fa-binoculars"></i></button>
+                </form>
+            </li>
+            <li ng-repeat="item in menu"
+                ng-class="{ hasChild: (item.children!==undefined),
+										active: item.selected,
+										  open: (item.children!==undefined) && item.open,
+							   'nav-separator': item.separator==true,
+		            			'search-focus': (searchQuery.length>0 && item.selected) }"
+                ng-show="!(searchQuery.length && !item.selected)"
+                ng-include="'templates/nav_renderer.html'"
+                    ></li>
+        </ul>
+    </nav> <!-- #sidebar-->
